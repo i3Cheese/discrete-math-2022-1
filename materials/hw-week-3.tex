@@ -1,0 +1,258 @@
+% !TEX options=--shell-escape
+\documentclass{article}
+\usepackage{tikz,amsthm,amsmath,cancel,pgfplots,animate,multirow,unicode-math,adjustbox,booktabs,array,pst-solides3d,pst-all,pst-3dplot,color,colortbl}
+\usepackage[margin=96pt]{geometry}
+
+\usetikzlibrary{automata,positioning,calc,decorations.pathmorphing,patterns,external}
+\tikzexternalize[prefix=external/]
+
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}
+\renewcommand*{\proofname}{Доказательство}
+\newcommand{\const}{\mathrm{const}}
+\DeclareMathOperator{\ord}{ord}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fr}[1]{\left\{#1\right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcolumntype{o}{>{\columncolor{orange}}c}
+
+\makeatletter
+\newenvironment{sqcases}{%
+	\matrix@check\sqcases\env@sqcases
+}{%
+	\endarray\right.%
+}
+\def\env@sqcases{%
+	\let\@ifnextchar\new@ifnextchar
+	\left\lbrack
+	\def\arraystretch{1.2}%
+	\array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setmainfont{CMU Serif}
+\widowpenalties 1 10000
+\raggedbottom
+
+\date{24 сентября, 2022}
+\title{Дискретная математика \\ \Large Домашнее задание 3}
+\author{Иван Мачуговский}
+
+\AtBeginDocument{
+	\renewcommand{\setminus}{\mathbin{\backslash}}
+}
+
+\begin{document}
+	\maketitle
+
+	\begin{section}{Задача 1}
+		Выберем, на каких позициях будут стоять четные цифры, а на каких -- нечетные. После этого число определяется однозначно. Поэтому ответ
+
+		\begin{equation*}
+			\binom{10}{5} = \frac{10!}{(5!)^2} = 252.
+		\end{equation*}
+	\end{section}
+
+	\begin{section}{Задача 2}
+		Имеем $18$ черных карт и $18$ красных карт. Вероятность того, что первые две карты -- черные, а следующие две -- красные, равна
+
+		\begin{equation*}
+			\frac{18}{36} \cdot \frac{17}{35} \cdot \frac{18}{34} \cdot \frac{17}{33}.
+		\end{equation*}
+
+		Такая же вероятность получится при всех других способах выбора двух черных карт и двух красных, коих всего $\binom{4}{2}$. Итого, искомая вероятность
+
+		\begin{equation*}
+			\binom{4}{2} \cdot \frac{18}{36} \cdot \frac{17}{35} \cdot \frac{18}{34} \cdot \frac{17}{33} = \frac{153}{385}.
+		\end{equation*}
+	\end{section}
+
+	\begin{section}{Задача 3}
+		Требуемое эквивалентно условию: первая цифра нечетна, среди следующих 6 цифр ровно две четны, и четные цифры не стоят рядом.
+
+		Число способов выбрать места для четных цифр так, чтобы они не стояли рядом, равно $\binom{6}{2} - 5$. После этого на каждой из позиций возможно по пять вариантов (поскольку первая цифра нечетна, число не будет начинаться с нуля). Итого
+
+		\begin{equation*}
+			\left( \binom{6}{2} - 5 \right) \cdot 5^7 = 781250.
+		\end{equation*}
+	\end{section}
+
+	\begin{section}{Задача 4}
+		Будем считать, что группы могут быть пустыми. Тогда каждый человек случайно равновероятно выбирает номер группы, к которой он присоединится.
+
+		Хоровод получается у всех трех елок, если в каждой группе ровно три человека. Способов разделить $9$ человек на группы по $3$, $3$ и $3$ будет
+
+		\begin{equation*}
+			\binom{9}{3} \cdot \binom{9-3}{3} \cdot \binom{9-3-3}{3} = \frac{9!}{3! \cdot 3! \cdot 3!} = 1680.
+		\end{equation*}
+
+		Следовательно, вероятность неудачи
+
+		\begin{equation*}
+			1 - \frac{1680}{3^9} = \frac{6001}{6561}.
+		\end{equation*}
+	\end{section}
+
+	\begin{section}{Задача 5}
+		Докажем это по индукции по $n$.
+
+		База -- $n = 0$ и $n = 1$, тогда равенство тривиально.
+
+		Докажем утверждение для $n \ge 2$ в предположении его верности для всех меньших номеров.
+
+		Доопределим $\binom{n}{k} = 0$ при $k > n$ или $k < 0$; все еще считаем при этом $n \ge 0$, чтобы на всей области определения выполнялось $\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}$. Тогда
+
+		\begin{multline*}
+			\sum_{0 \le k \le n/2} \binom{n-k}{k} = 1 + \sum_{1 \le k \le n/2} \binom{n-k}{k} = \\
+			[\text{т.к. } n - k > 0] = 1 + \sum_{1 \le k \le n/2} \binom{n-k-1}{k} + \binom{n-k-1}{k-1} = \\
+			= 1 + \sum_{1 \le k \le n/2} \binom{n-k-1}{k} + \sum_{1 \le k \le n/2} \binom{n-k-1}{k-1} = \\
+			= \sum_{0 \le k \le n/2} \binom{n-k-1}{k} + \sum_{1 \le k \le n/2} \binom{n-k-1}{k-1} = \\
+			[\text{после замены } k \to k+1 \text{ справа}] = \sum_{0 \le k \le n/2} \binom{n-1-k}{k} + \sum_{0 \le k \le n/2-1} \binom{n-2-k}{k} = \\
+			[\text{т.к. при } k > (n-1)/2 \text{ значение 0}] = \sum_{0 \le k \le (n-1)/2} \binom{n-1-k}{k} + \sum_{0 \le k \le (n-2)/2} \binom{n-2-k}{k} = \\
+			= F_{n-1} + F_{n-2} = F_n. \qed
+		\end{multline*}
+	\end{section}
+
+	\begin{section}{Задача 6}
+		Чтобы было проще решать, усложним задачу: будем рассматривать более общий случай, когда требуется, чтобы числа были не нечетными, а не делились на некоторое простое $p$.
+
+		Обозначим за $\ord_p a$ степень вхождения $p$ в $a$. Тогда
+
+		\begin{multline*}
+			\ord_p n! = \sum_{x=1}^n \ord_p x = \sum_{m=1}^\infty m \cdot \#_x [1 \le x \le n, \ord_p x = m] = \\
+			= \sum_{m=1}^\infty \#_x [1 \le x \le n, \ord_p x \ge m] = \sum_{m=1}^\infty \#_x [1 \le x \le n, p^m \mid x] = \sum_{m=1}^\infty \floor{\frac{n}{p^m}}.
+		\end{multline*}
+
+		Возвращаясь к задаче,
+
+		\begin{equation*}
+			\ord_p \binom{n}{k} = \ord_p \frac{n!}{k! (n-k)!} = \ord_p n! - \ord_p k! - \ord_p (n-k)! = \sum_{m=1}^\infty \floor{\frac{n}{p^m}} - \floor{\frac{k}{p^m}} - \floor{\frac{n-k}{p^m}}.
+		\end{equation*}
+
+		Легко видеть, что $\floor{a} + \floor{b} \le \floor{a+b}$, поэтому $\ord_p \binom{n}{k} = 0$ тогда и только тогда, когда каждое слагаемое вида $\floor{a+b} - \floor{a} - \floor{b}$ равно нулю.
+
+		\begin{multline*}
+			\floor{a+b} = \floor{a} + \floor{b} \iff a+b - \fr{a+b} = a - \fr{a} + b - \fr{b} \iff \\
+			\iff \fr{a+b} = \fr{a} + \fr{b} \iff \fr{a} + \fr{b} < 1,
+		\end{multline*}
+
+		то есть
+
+		\begin{equation*}
+			\forall m \ge 1: \fr{\frac{k}{p^m}} + \fr{\frac{n-k}{p^m}} < 1 \iff \forall m \ge 1: (k \bmod p^m) + ((n-k) \bmod p^m) < p^m.
+		\end{equation*}
+
+		Понятно, что если при всех $p^m \le n$ верно $n = -1 \pmod{p^m}$, то
+
+		\begin{multline*}
+			(k \bmod p^m) + ((n-k) \bmod p^m) = (k \bmod p^m) + ((-1-k) \bmod p^m) = \\
+			= (k \bmod p^m) + (p^m - 1 - (k \bmod p^m)) = p^m - 1 < p^m;
+		\end{multline*}
+
+		при $p^m > n$ результат
+
+		\begin{equation*}
+			(k \bmod p^m) + ((n-k) \bmod p^m) = k + (n - k) = n < p^m
+		\end{equation*}
+
+		получается автоматически, и поэтому $\ord_p \binom{n}{k} = 0$ при всех $k$.
+
+		С другой стороны, если $n \ne -1 \pmod{p^m}$ при некотором $p^m \le n$, то при подстановке $k = p^m - 1$ имеем
+
+		\begin{equation*}
+			(k \bmod p^m) + ((n-k) \bmod p^m) = (p^m-1) + ((n+1) \bmod p^m) \ge p^m,
+		\end{equation*}
+
+		так как $(n+1) \bmod p^m \ne 0$.
+
+		Таким образом, все элементы в $n$-й строке треугольника Паскаля не делятся на $p$ тогда и только тогда, когда
+
+		\begin{equation*}
+			\forall m \ge 1, p^m \le n: n = -1 \pmod{p^m}.
+		\end{equation*}
+
+		Это означает, что число $n$ представляется в виде $n = a \cdot p^k - 1, \ 0 < a < p$ (эквивалентность в обе стороны легко проверяется формально).
+
+		В частном случае $p = 2$ получаем, что $n$ имеет вид $2^k - 1$.
+	\end{section}
+
+	\begin{section}{Задача 7}
+		Докажем, что если на доске из $n$ полей ведется игра, подобная описанной в условии, с $k$ фигурами, каждая из которых бьет не более $m$ полей, и $n \ge \frac{(2+(k+1)m)k}{2}$, то фигуры можно расставить так, чтобы они друг друга не били. В нашем частном случае $n = 10^4, k = m = 20$, и неравенство выполняется.
+
+		Доказывать утверждение будем по индукции по числу фигур $k$. При $k = 0$ утверждение тривиально верно.
+
+		Рассмотрим случай $k > 0$. Тогда проделаем следующее вычисление. Для каждой фигуры от $1$ до $k-1$ для каждого ее положения отметим поля, которые фигура бьет в этом положении. Для каждого поля посчитаем, сколько раз оно было отмечено. Всего отметок не более $(k-1)mn$, значит, по принципу Дирихле, существует поле с не более чем $(k-1)m$ отметками.
+
+		Поставим $k$-ю фигуру на это поле. Теперь "выколем" из доски поля так, что $k$-я фигура не бьет ни одно из оставшихся полей, и наоборот, как бы ни поставить любые другие фигуры на оставшуются доску, они не бьют поле $k$-й фигуры. Выколоть нужно следующие поля: само поле $k$-й фигуры, поля, которые она бьет (не более $m$), а также все поля, с которых были поставлены отметки на это поле (не более $(k-1)m$). Итого выколото не более $1+km$ полей. Соответственно, мы свелись к состоянию
+
+		\begin{gather*}
+			k' = k - 1, \\
+			m' = m, \\
+			n' \ge n - (1+km) \ge \frac{(2+(k+1)m)k}{2} - (1+km) = \frac{(2+(k'+1)m')k'}{2},
+		\end{gather*}
+
+		в котором, по предположению индукции, корректная расстановка существует. Добавляя $k$-ю фигуру, получаем все еще корректную расстановку, поскольку по построению оставшиеся поля не бьют ее, а она не бьет оставшиеся поля. \qed
+	\end{section}
+
+	\begin{section}{Задача 8}
+		Назовем строку тяжелой, если в ней больше $\sqrt{n}$ единиц.
+
+		Рассмотрим данную нам таблицу. Пока в этой таблице есть тяжелая строка, будем делать следующее:
+
+		\begin{tabular}{|o|o|c|o|o|c|o|}
+			\hline
+			1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+			\hline
+			0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+			\hline
+			0 & 0 & 1 & 0 & 1 & 0 & 0 \\
+			\hline
+			\rowcolor{yellow}
+			1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+			\hline
+			0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+			\hline
+			0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+			\hline
+		\end{tabular}
+
+		Зафиксируем тяжелую строку (на рисунке обозначена желтым). Назовем столбец хорошим, если на пересечении его с этой тяжелой строкой стоит единица (на рисунке оранжевый).
+
+		Тогда сумма всех чисел в хороших столбцах разделяется на два слагаемых: сумму в желтой строке и во всех остальных (среди хороших столбцов). Первое слагаемое, очевидно, не превосходит $n$. Второе слагаемое также не превосходит $n$, поскольку в каждой строке среди хороших столбцов не может быть больше одной единицы, иначе будет существовать прямоугольник с единицами в каждом углу. Следовательно, сумма чисел в хороших столбцах не превосходит $2n$.
+
+		Вычеркнем все хорошие столбцы из таблицы и продолжим алгоритм дальше: выберем тяжелую строку, посчитаем сумму в хороших столбцах, и так далее.
+
+		\begin{tabular}{|c|c|}
+			\hline
+			1 & 0 \\
+			\hline
+			1 & 0 \\
+			\hline
+			\rowcolor{yellow}
+			0 & 0 \\
+			\hline
+			0 & 1 \\
+			\hline
+			1 & 0 \\
+			\hline
+		\end{tabular}
+
+		В итоге мы получим таблицу, в которой тяжелых строк нет. Следовательно, в каждой строке единиц не более $\sqrt{n}$, а значит, всего единиц не более $n \sqrt{n}$.
+
+		Поскольку каждый раз мы удаляли тяжелую строку, число столбцов уменьшалось каждый раз как минимум на $\sqrt{n}$, следовательно, всего операций могло произойти не больше, чем $\frac{n}{\sqrt{n}} = \sqrt{n}$. При каждой операции вычеркивались столбцы с суммой не более $2n$, поэтому всего вычеркнуто не более $2n \sqrt{n}$ единиц.
+
+		Итого, в изначальной таблице единиц было не более $3n \sqrt{n}$. \qed
+	\end{section}
+\end{document}

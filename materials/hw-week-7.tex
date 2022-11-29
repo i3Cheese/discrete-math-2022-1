@@ -1,0 +1,301 @@
+% !TEX options=--shell-escape
+\documentclass{article}
+\usepackage{tikz,amsthm,amsmath,cancel,pgfplots,animate,multirow,unicode-math,adjustbox,booktabs,array,pst-solides3d,pst-all,pst-3dplot,color,colortbl,sets,mathtools}
+\usepackage[margin=96pt]{geometry}
+
+\usetikzlibrary{automata,positioning,calc,decorations.pathmorphing,patterns,external}
+\tikzexternalize[prefix=external/]
+
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}
+\renewcommand*{\proofname}{Доказательство}
+\newcommand{\const}{\mathrm{const}}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\maj}{MAJ}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\fr}[1]{\left\{#1\right\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\continuum}{\mathfrak{c}}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\newcolumntype{o}{>{\columncolor{orange}}c}
+
+\makeatletter
+\newenvironment{sqcases}{%
+	\matrix@check\sqcases\env@sqcases
+}{%
+	\endarray\right.%
+}
+\def\env@sqcases{%
+	\let\@ifnextchar\new@ifnextchar
+	\left\lbrack
+	\def\arraystretch{1.2}%
+	\array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setmainfont{CMU Serif}
+\widowpenalties 1 10000
+\raggedbottom
+
+\date{29 октября, 2022}
+\title{Дискретная математика \\ \Large Домашнее задание 7}
+\author{Иван Мачуговский}
+
+\AtBeginDocument{
+	\renewcommand{\setminus}{\mathbin{\backslash}}
+}
+
+\begin{document}
+	\maketitle
+
+	\begin{section}{Задача 1}
+		Нет, несчетно. В самом деле, обозначим это множество $A$ и построим инъекцию $f: \{0, 1\}^{\N} \to A$:
+
+		\begin{equation*}
+			f(a_1 a_2 \dots a_n \dots) = a_1 \overline{a_1} a_2 \overline{a_2} \dots a_n \overline{a_n} \dots,
+		\end{equation*}
+
+		где $\overline{x} = 1 - x$ -- операция отрицания. Тогда каждый отрезок нечетной длины содержит некоторое количество $n$ "блоков" из двух бит вида $x \overline{x}$ и еще некоторый дополнительный бит $y$ из конца предыдущего блока или начала следующего. Итого нулевых и единичных бит соответственно $n + \overline{y}$ и $n - y$, что отличается ровно на единицу.
+
+		Итого $\abs{\{0, 1\}^{\N}} \le \abs{A}$, а $\{0, 1\}^{\N}$ несчетно, поэтому и $A$ несчетно.
+	\end{section}
+
+	\begin{section}{Задача 2}
+		Обозначим множество таких последовательностей $A$.
+
+		С одной стороны, очевидно, $\abs{A} \le \abs{3^{\N}} = \continuum$.
+
+		С другой стороны, легко построить инъекцию $f: \{0, 1\}^{\N} \to A$. Будем строить последовательность $b = f(a_1 a_2 \dots a_n \dots)$ итеративно. Пусть $b_1 = a_1$. Далее для каждого $n \ge 2$:
+
+		\begin{enumerate}
+			\item Если $b_{n-1} = 0$, пусть $b_n = a_n$.
+			\item Если $b_{n-1} = 1$, пусть $b_n = 2 a_n$.
+			\item Если $b_{n-1} = 2$, пусть $b_n = 1 + a_n$.
+		\end{enumerate}
+
+		Легко видеть, что в этой последовательности никакие два соседних элемента в сумме не дают $2$: по построению возможны только комбинации
+
+		\begin{equation*}
+			(0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2).
+		\end{equation*}
+
+		Эта функция -- действительно инъекция, поскольку для любых двух различных последовательностей $a$ и $a'$, различающихся в первый раз в индексе $n$, имеем
+
+		\begin{equation*}
+			b_{n-1} = b'_{n-1}, \ a_n \ne a'_n \implies b_n \ne b'_n.
+		\end{equation*}
+
+		Тогда $\abs{A} \ge \abs{\{0, 1\}^{\N}} = \continuum$.
+
+		Отсюда по теореме Кантора-Бернштейна $\abs{A} = \continuum$.
+	\end{section}
+
+	\begin{section}{Задача 3}
+		Да, можно.
+
+		Введем на плоскости декартову систему координат. Для каждой точки $A$ прямой $x = y$ расположим единицу так, что ее вершина (общий конец отрезков) находится в точке $A$, а длинный отрезок расположен вертикально. Легко видеть, что при таком расположении единицы не пересекаются, а всего их будет $\abs{\R} = \continuum$.
+	\end{section}
+
+	\begin{section}{Задача 4}
+		Нет, нельзя.
+
+		Рассмотрим произвольное удовлетворяющее условию расположение крестов на плоскости.
+
+		Сопоставим каждому кресту множество из четырех точек с рациональными координатами следующим образом.
+
+		Для данного креста назовем его вершины $A, B, C, D$ в порядке обхода против часовой стрелки. Тогда $O = AC \cap BD$ -- центр креста. Выберем произвольно по рациональной точке из внутренностей $\triangle AOB, \triangle BOC, \triangle COD$ и $\triangle DOA$ (то есть точки на границе брать запрещается). Сопоставим кресту множество из этих четырех точек.
+
+		Если ни у каких двух крестов все четыре точки одновременно не совпадают, то всего крестов должно быть не более, чем четверок рациональных точек, то есть $(\abs{\Q}^2)^4 = \aleph_0 < \continuum$, что и требуется.
+
+		Покажем, что совпадения действительно исключены.
+
+		Будем пользоваться следующей простой леммой: если у креста с вершинами $A, B, C, D$ и центром $O$ были выбраны рациональные точки $K, L, M, N$, где $K \in \triangle AOB$ и далее циклически, имеют место условия
+
+		\begin{equation*}
+			OB \cap KL \ne \emptyset, \
+			OC \cap LM \ne \emptyset, \
+			OD \cap MN \ne \emptyset, \
+			OA \cap NK \ne \emptyset.
+		\end{equation*}
+
+		Предположим, у некоторых двух крестов с вершинами $A_1, B_1, C_1, D_1$ и $A_2, B_2, C_2, D_2$ и центрами $O_1$ и $O_2$ соответственно совпадают выбранные множества рациональных точек $\{K, L, M, N\}$.
+
+		Без ограничения общности считаем, что $O_1 A_1 \ge O_2 A_2$.
+
+		Введем декартову систему координат так, что
+
+		\begin{equation*}
+			A_1 = (1, 0), \ B_1 = (0, 1), \ C_1 = (-1, 0), \ D_1 = (0, -1) \implies O_1 = (0, 0).
+		\end{equation*}
+
+		$K, L, M, N$ были выбраны, в частности, для первого креста, поэтому без ограничения общности можно считать, что $K, L, M, N$ строго лежат в первой, второй, третьей и четвертой четвертях соответственно.
+
+		Вершина второго креста $O_2$ лежит в одной из четвертей плоскости (или, возможно, на осях; отнесем оси к четвертям произвольно). Пусть без ограничения общности это первая четверть.
+
+		$K, L, M, N$ были выбраны и для второго креста тоже, поэтому по лемме отрезок $LM$ обязательно пересекается со вторым крестом в некоторой точке $P$. Имеем
+
+		\begin{align*}
+			L_x < 0, \ & 0 < L_y < 1, \\
+			M_x < 0, \ & -1 < M_y < 0,
+		\end{align*}
+
+		поэтому для точки $P$
+
+		\begin{equation*}
+			P_x < 0, \ -1 < P_y < 1.
+		\end{equation*}
+
+		С другой стороны, $O_2 A_2 \le O_1 A_1 = 1$. Следовательно, описанная окружность квадрата $A_2 B_2 C_2 D_2$ имеет радиус не более $1$, поэтому каждая из точек $K, L, M, N$ удалена от $O_2$ менее, чем на $1$. Тогда
+
+		\begin{equation*}
+			O_{2y} < M_y + 1 < 1.
+		\end{equation*}
+
+		Следовательно, вершины отрезка $O_2 P$ (подмножество второго креста) расположены по разные стороны от оси ординат (или, в случае $O_2$, возможно, на осях), а их ординаты лежат в интервале $(-1, 1)$, следовательно, этот отрезок пересекает $B_1 D_1$, поэтому кресты пересекаются. Противоречие.
+	\end{section}
+
+	\begin{section}{Задача 5}
+		Нет, неверно.
+
+		Любую нестрого убывающую последовательность натуральных чисел $a_1, a_2, \dots, a_n, \dots$ можно переписать в виде
+
+		\begin{equation*}
+			b_1, \ b_1 - b_2, \ b_1 - b_2 - b_3, \ \dots, \ b_1 - b_2 - \dots - b_n, \dots,
+		\end{equation*}
+
+		где
+
+		\begin{equation*}
+			b_1 = a_1, \ b_{n+1} = a_n - a_{n+1},
+		\end{equation*}
+
+		причем $b_n \in \N_0$. Каждый ненулевой член последовательности $\{b_n\}$, начиная с $n \ge 2$, соответствует уменьшению элементов последовательности $\{a_n\}$, поэтому таких членов конечно (формально -- не более $a_1$).
+
+		Показать, что последовательностей целых чисел с конечным числом ненулевых элементов счетно, можно кучей разных способов; пожалуй, самый короткий -- воспользоваться тем, что в силу основной теоремы арифметики такая последовательность $b_1, b_2, \dots$ однозначно кодируется рациональным (а в нашем частном случае вообще целым) числом $\prod_n p_n^{b_n}$, где $\{p_n\}$ -- последовательность простых чисел, а таких кодов счетно.
+	\end{section}
+
+	\begin{section}{Задача 6}
+		Поскольку $\Q$ и $\N$ равномощны, можно исследовать мощность множества биекций не из $\N$ в $\Q$, а из $\N$ в $\N$.
+
+		Обозначим множество биекций $f: \N \to \N$ за $A$. С одной стороны,
+
+		\begin{equation*}
+			\abs{A} \le \abs{\N^{\N}} \le \abs{(2^{\N})^{\N}} = \abs{2^{\N \times \N}} = \abs{2^{\N}} = \continuum.
+		\end{equation*}
+
+		С другой стороны, легко построить инъекцию $g: \{0, 1\}^{\N} \to A$, интерпретируя $A$ как подмножество множества последовательностей натуральных чисел:
+
+		\begin{equation*}
+			g(a_1, a_2, \dots, a_n, \dots) = \{1 + a_1, 2 - a_1, 3 + a_2, 4 - a_2, \dots, 2n - 1 + a_n, 2n - a_n, \dots\}.
+		\end{equation*}
+
+		Здесь если $a_n = 0$, то соответствующие члены последовательности будут равны $2n-1$ и $2n$, как в натуральном ряде, а если $a_n = 1$, то они будут равны $2n$ и $2n-1$, то есть de facto поменяны местами.
+
+		Отсюда $\abs{A} \ge \abs{\{0, 1\}^{\N}} = \continuum$. Итого по теореме Кантора-Бернштейна $\abs{A} = \continuum$.
+	\end{section}
+
+	\begin{section}{Задача 7}
+		Да, верно.
+
+		\begin{lemma}
+			Любое бесконечное множество есть объединение счетных множеств.
+		\end{lemma}
+
+		\begin{proof}
+			Эту лемму предлагаю считать либо самоочевидной и не заслуживающей пристального внимания, потому что идейная часть доказательства не здесь, либо признать ее нетривиальность и рассмотреть доказательство через лемму Цорна.
+
+			Пусть $K$ -- данное бесконечное множество. Пусть $\mathfrak{P}$ -- семейство всех таких наборов $P$ из счетных множеств, что
+
+			\begin{equation*}
+				P = \{p_\lambda\}_{\lambda \in \Lambda}, \ \bigsqcup_{\lambda \in \Lambda} p_\lambda \subseteq K.
+			\end{equation*}
+
+			Легко видеть, что $\emptyset \in \mathfrak{P}$.
+
+			Отношение $\preceq$ введем стандартно: $P \preceq Q \iff P \subseteq Q$.
+
+			Тогда любая цепь $\{P_\alpha\}_{\alpha \in \Alpha}$ имеет верхнюю грань
+
+			\begin{equation*}
+				P = \bigcup_{\alpha \in \Alpha} P_\alpha,
+			\end{equation*}
+
+			лежащую в $\mathfrak{P}$, поскольку
+
+			\begin{equation*}
+				\bigcup_{\lambda \in \Lambda} p_\lambda = \bigcup_{\alpha \in \Alpha} \bigcup_{\lambda \in \Lambda_\alpha} p_{\alpha \lambda} \subseteq K,
+			\end{equation*}
+
+			а элементы $P$ не пересекаются, ведь если $p_\kappa \cap p_\mu \ne \emptyset$, то $p_\kappa \in P_\alpha$ и $p_\mu = P_\beta$ для некоторых $\alpha, \beta \in \Alpha$. Так как $\set{P_\alpha}$ -- цепь, то либо $P_\alpha \preceq P_\beta$, либо $P_\alpha \preceq P_\beta$; в обоих случаях получаем, что $p_\kappa, p_\mu \in P_\beta$ либо $P_\alpha$ соответственно, и при этом $p_\kappa \cap p_\mu \ne 0$, откуда $p_\kappa = p_\mu$.
+
+			Следовательно, условия леммы Цорна выполняются, и существует максимальное семейство $P$. Обозначим
+
+			\begin{equation*}
+				L = K \setminus \bigsqcup_{\alpha \in \Alpha} p_\alpha.
+			\end{equation*}
+
+			Если $L = \emptyset$, получено требуемое. Если $L$ конечно, выберем в $P$ любое счетное множество и прибавим к нему $L$; оно останется счетным, и теперь $L = \emptyset$.
+
+			Если же $L$ бесконечно, выберем в нем произвольное счетное подмножество $p \subseteq L$. Тогда $P' = P \cup \{p\} \in \mathfrak{P}$ и при этом $P \preceq P', P \ne P'$, что противоречит лемме Цорна.
+		\end{proof}
+
+		\begin{lemma}
+			Пусть $K$ -- бесконечное множество. Тогда $\abs{K} = \abs{K \times \{1, 2\}}$.
+		\end{lemma}
+
+		\begin{proof}
+			Разобьем $K$ на объединение непересекающихся счетных множеств:
+
+			\begin{equation*}
+				K = \bigsqcup_{\lambda \in \Lambda} K_\lambda, \ K_\lambda = \{ k_{\lambda1}, k_{\lambda2}, \dots \}
+			\end{equation*}
+
+			Определим биекцию $f: K \times \{1, 2\} \to K$ как
+
+			\begin{align*}
+				f(k_{\lambda n}, 1) &= k_{\lambda, 2n-1}, \\
+				f(k_{\lambda n}, 2) &= k_{\lambda, 2n}.
+			\end{align*}
+
+			Отсюда $\abs{K} = \abs{K \times \{1, 2\}}$.
+		\end{proof}
+
+		Пусть $\abs{A \cup B} = \continuum$. В ZFC любые два множества сравнимы, тогда без ограничения общности $\abs{A} \le \abs{B}$. Тогда
+
+		\begin{equation*}
+			\abs{B} \le \abs{A \cup B} = \continuum.
+		\end{equation*}
+
+		$B$ бесконечно, потому что в противном случае и $A$, а значит, и $\continuum$ были бы конечны.
+
+		Тогда по лемме
+
+		\begin{equation*}
+			\abs{B} = \abs{B \times \{1, 2\}} \ge \abs{(A \times \{1\}) \sqcup (B \times \{2\})} \ge \abs{A \cup B} = \continuum,
+		\end{equation*}
+
+		откуда по теореме Кантора-Бернштейна $\abs{B} = \continuum$, что доказывает требуемое.
+	\end{section}
+
+	\begin{section}{Задача 8}
+		Да, существует.
+
+		Занумеруем рациональные числа $\{q_n\}$.
+
+		Для каждого действительного числа $a$ выберем по рациональной точке в его проколотой $1, \frac{1}{2}, \dots, \frac{1}{n}, \dots$-окрестности: $\{q_1(a), q_2(a), \dots\}$. Это множество счетно, поскольку в противном случае в некоторой окрестности $a$ не лежало бы ни одной рациональной точки, и имеет единственную предельную точку -- $a$. Тогда $Q(a) = \set{q^{-1}(q_n(a)) \mid n \in \N}$ -- множество натуральных чисел.
+
+		Рассмотрим семейство из таких множеств -- по одному на каждое $a$. Оно будет, очевидно, континуально. Любые два множества $Q(a), Q(b)$ из этого семейства не пересекаются начиная с $n \ge \ceil{\frac{2}{\abs{a-b}}}$, поскольку при этом условии $\frac{1}{n}$-окрестности $a$ и $b$ не пересекаются, поэтому $Q(a) \cap Q(b)$ конечно.
+	\end{section}
+\end{document}
