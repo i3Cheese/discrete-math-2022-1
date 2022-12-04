@@ -1,0 +1,51 @@
+\paragraph{2.}{
+	\textbf{Эквивалентность принципа математической индукции, принципа полной индукции и принципа наименьшего числа.}
+	\begin{enumerate}
+		\item ПМИ (принцип математической индукции)
+		\item ППМИ (принцип полной математической индукции)
+		\item ПНЧ (принцип наименьшего числа)
+	\end{enumerate}
+	Докажем следствия по циклу (из утверждения 1 следует утверждение 2, из $2 \Rightarrow 3$, из $3 \Rightarrow 1$), тогда эквивалетнонсть каждой пары будет доказана.
+	\begin{itemize}
+		\item ПМИ $\Rightarrow $ ППМИ
+		
+		Пусть $S \subseteq \N$
+		
+		$\forall n : (\forall k < n, k \in S) \Rightarrow n \in S$
+		
+		$X = \{n \mid \forall k < n, k \in S \}$
+		
+		$1 \in X$
+		
+		$n \in X \Rightarrow n \in S$
+		
+		$n \in X \Rightarrow n+1 \in X \Rightarrow n + 1 \in S$
+		
+		Тогда по индукции $S = \N$, значит ПМИ $\Rightarrow$ ППМИ, ч.т.д.
+		
+		\item ППМИ $\Rightarrow$ ПНЧ
+		
+		Рассмотрим $S \subseteq \N, \:S \neq \varnothing$.
+		
+		Докажем от противного. Пусть в $S$ нет минимального элемента.
+		
+		$\overline S = \N \setminus S = \{n \in \N \mid n \notin S\}$.
+		
+		Тогда $1 \in \overline S$ и $\forall n : (\forall k < n, k \in \overline S) \Rightarrow n \in \overline S$
+		
+		По ППМИ получаем $\overline S = \N \Rightarrow S = \varnothing \Rightarrow$ противоречие $\Rightarrow$, значит ППМИ $\Rightarrow$ ПНЧ, ч.т.д.
+		
+		\item ПНЧ $\Rightarrow$ ПМИ
+		
+		Пусть $S = \{n \in \N \mid A(n) - \text{ложное}\}$
+		Рассмотрим $2$ случая:
+		\begin{enumerate}
+			\item $S = \varnothing \Rightarrow \forall n \in \N : A(n)$ - верно, ч.т.д. 
+			\item $S \neq \varnothing \Rightarrow \exists \min{S}$. Обозначим $m = \min{S}$
+			
+			Но тогда $m - 1 \notin S \Rightarrow A(m - 1) - \text{верно}$
+			
+			Но при этом $A(m)$ - верно $\Rightarrow m \notin S \Rightarrow$ противоречие, значит ПНЧ $\Rightarrow$ ПМИ, ч.т.д.
+		\end{enumerate}
+	\end{itemize}
+}
