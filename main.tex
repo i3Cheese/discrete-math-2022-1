@@ -12,24 +12,21 @@
 	\tableofcontents
 	\newpage
 	\section{Определения} {
-		\input{definitions/question1} 
-		\input{definitions/question31} 
-		\input{definitions/question37} 
-		\input{definitions/question38} 
-		\input{definitions/question39} 
-		\input{definitions/question40} 
-		\input{definitions/question41} 
+		\foreach \i in {0,...,41} {
+			\edef\FileName{definitions/question\i}%
+			\IfFileExists{\FileName}{%
+				\input{\FileName}%
+			}
+		}
 	}
 	\newpage
 	\section{Доказательства} {
-		\input{proofs/question1}
-		\input{proofs/question2}
-		\input{proofs/question24}
-		\input{proofs/question28}
-		\input{proofs/question29}
-		\input{proofs/question30}
-		\input{proofs/question31}
-		\input{proofs/question32}
+		\foreach \i in {0,...,32} {
+			\edef\FileName{proofs/question\i}%
+			\IfFileExists{\FileName}{%
+				\input{\FileName}%
+			}
+		}
 	}
 	\newpage
 	\section{Задачи из листков}{
