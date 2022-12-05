@@ -1,0 +1,46 @@
+\subsection{Класс линейных функций, лемма о нелинейной функции. Классы функций, сохраняющих константу. Лемма о функции, не лежащей в классе, сохраняющем константу.}
+\textbf{Замкнутость класса линейных функций} $[L] = L$\\
+
+\noindent \textbf{Доказательство:} Индукция по построению формулы:\\
+
+Пусть $f_0(y_1, \ldots, y_k) f_1, f_2, \ldots, f_k \in L$. Докажем, что $f_0 (f_1(x_1,\ldots,x_n),\ldots,f_k(x_1,\ldots,x_n)) = g \in L$.
+Вспомним, что $g = a_0 \oplus a_1f_1 \oplus a_2f_2 \oplus \ldots \oplus a_kf_k$. Подставим $f_i$, раскроем скобки, приведем подобные и получим линейную функцию. Получается, что $g \in L$.\\
+
+\textbf{Утверждение} $L = [{\oplus, 1}]$\\
+
+\noindent \textbf{Доказательство:} по определению линейной функции.\\
+
+\textbf{Лемма о нелинейной функции}: Пусть $f(x_1, \ldots, x_n) \notin L$. Тогда подставив вместо переменных функции $x_1, \ldots, x_n$ 0, $x$ и $y$ можно получить $g(x, y) \notin L$.\\
+
+\noindent \textbf{Доказательство:} $f(x_1,\ldots,x_n) = \ldots \oplus (x_{i_1} \wedge x_{i_2} \wedge \ldots \wedge x_{i_k}) \ldots$.\\
+
+Рассмотрим в многочлене Жегалкина мономы с количеством переменных $r \ge 2: x_{i_1} \wedge x_{i_2} \wedge \ldots \wedge x_{i_r}$. Подставим в $x_{i_1}$ $x$, а во все остальное $y$.
+
+$g(x, y) = x \wedge y \oplus ax \oplus by \oplus c \notin L$.\\
+
+\textbf{Следствие:} Пусть $f \notin L$. Тогда $x \wedge y \in [\{0, \neg x, f\}]$\\
+
+\noindent \textbf{Доказательство:} $g(x, y) = xy \oplus ax \oplus by \oplus c \in [\{0, f\}]$\\
+
+Рассмотрим $g(x \oplus b, y \oplus a) = (x \oplus b) \wedge (y \oplus a) \oplus a(x \oplus b) \oplus b(y \oplus a) \oplus c = xy \oplus xa \oplus by \oplus ab \oplus ax \oplus ab \oplus by \oplus ab = xy \oplus ab \oplus c$.
+Если $ab \oplus c = 0$, то все хорошо и мы получили $xy$.
+Иначе $\neg g(x \oplus b, y \oplus a) = xy$.\\
+
+\textbf{Класс $T_0 = \{f \in P_2 | f(0, \ldots, 0) = 0\}$}\\
+
+\textbf{Класс $T_1 = \{f \in P_2 | f(1, \ldots, 1) = 1\}$}\\
+
+($f \in T_0$ -- функция, сохраняющая ноль; $f \in T_1$ -- функция, сохраняющая единицу).\\
+
+\textbf{Замкнутость классов функций, сохраняющих константу.} $[T_0] = T_0$, $[T_1] = T_1$\\
+
+\noindent \textbf{Доказательство:}\\
+
+Пусть $f_0, f_1, \ldots, f_k \in T_0$. Тогда $f_0 (f_1(x_1, \ldots, x_n), f_2(x_1, \ldots, x_n), \ldots, f_k(x_1, \ldots, x_n)) \in T_0$ так, как $f_0 (f_1 (0, \ldots, 0), f_2 (0, \ldots, 0), \ldots, f_k (0, \ldots, 0)) = f_0 (0, \ldots, 0) = 0$.
+Аналогично доказывается и для $T_1$.\\
+
+\textbf{Лемма о функции, не лежащей в классе, сохраняющем константу.}\\
+
+1. Если $f \notin T_0$, тогда $f (x, \ldots, x) = \{1, \neg x\}$. \textit{(т.к для $f (0, \ldots, 0)$ мы точно знаем что значение равно 1, а для $f (1, \ldots, 1)$ множество будет содержать в себе все возможные значения $f$).}\\
+
+2. Если $f \notin T_1$, тогда $f (x, \ldots, x) = \{0, \neg x\}$ \textit {(аналогично).}
