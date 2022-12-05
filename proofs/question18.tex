@@ -1,1 +1,47 @@
 \subsection{Теорема Кантора – Бернштейна.}
+Пусть $|A| \leq |B|$ и $|A| \geq |B|$. Тогда $A \sim B$. Для простоты будем считать, что $A \cap B = \varnothing$.\\
+
+\noindent \textbf{Доказательство.}
+
+По условию $\exists f : A \to B, g : B \to A$ - инъекции. Тогда построим множества:
+
+\begin{center}
+    $$C_0 = A \backslash g(B) \subseteq A$$
+    $$C_1 = g(f(C_0)) \subseteq A$$
+    $$\dots$$
+    $$C_{n + 1} = g(f(C_n)) \subseteq A$$
+    $$\dots$$
+\end{center}
+
+Значит $C = \bigcup\limits_{n = 0}^{\infty} C_n$. Теперь построим функцию $h : A \to B$.
+
+\begin{equation*}
+    h(x) = \begin{cases}
+        f(x), x \in C\\
+        g^{-1}(x), x \notin C
+    \end{cases}
+\end{equation*}
+
+Теперь докажем, что полученная функция $h$ - биекция:\\
+
+1) $h$ - инъекция. Пусть $h(x_1) = h(x_2)$.
+
+\begin{enumerate}
+    \item Если $x_1, x_2 \in C$, то $h(x_2) = h(x_1) = f(x_1) = f(x_2) \Rightarrow x_1 = x_2$.
+    \item Если $x_1, x_2 \notin C$, то $h(x_2) = h(x_1) = g^{-1}(x_1) = g^{-1}(x_2) \Rightarrow g(h(x_2)) = g(h(x_1)) \Rightarrow x_2 = x_1$.
+    \item Если $x_1 \in C, x_2 \notin C$, то $f(x_1) = h(x_1) = h(x_2) = g^{-1}(x_2) \Rightarrow g(f(x_1)) = x_2$, но так как $x_1 \in C_n, n\geq 0$,
+    то $x_2 = g(f(x_1)) \in C_{n + 1} \subseteq C \Rightarrow x_2 \in C$ - противоречие.
+\end{enumerate}
+
+2) $h$ - сюръекция. Пусть $y \in B$.
+
+\begin{enumerate}
+    \item Если $y \in f(C) \Rightarrow \exists x \in C : y = f(x) \Rightarrow y = h(x)$.
+    \item Если $y \notin f(C) \Rightarrow$ рассмотрим $g(y)$.
+    \begin{enumerate}
+        \item Если $g(y) \notin C \Rightarrow h(g(y)) = g^{-1}(g(y)) = y$.
+        \item Если $g(y) \in C \Rightarrow g(y) \in C_n \Rightarrow g(y) = g(f(x)), x \in C_{n - 1} \Rightarrow y = f(x) = h(x)$, так как $x \in C$.
+    \end{enumerate}
+\end{enumerate}
+
+Чтд
