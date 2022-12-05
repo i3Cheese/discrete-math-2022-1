@@ -1,1 +1,69 @@
-\subsection{}
+\subsection{Принцип двойственности, класс самодвойственных функций, лемма о несамодвойственной функции. Класс монотонных функций, лемма о немонотонной функции.}
+\textbf{Класс S}\\
+
+\textbf{Лемма о принципе двойственности:}\\
+
+Пусть $f(x_1,\ldots,x_n) = f_0(f_1(x_1,\ldots,x_n),\ldots,f_k(x_1,\ldots,x_n))$. Тогда:
+$f^*(x_1,\ldots,x_n) = f_0^*(f_1^*(x_1,\ldots,x_n),\ldots,f_k^*(x_1,\ldots,x_n))$\\
+
+\noindent \textbf{Доказательство:}\\
+
+$$f^*(x_1,\ldots,x_n) = \neg f(f_1^*(\neg x_1, \ldots, \neg x_n), \ldots, f_k^*(\neg x_1, \ldots, \neg x_n)) = $$
+
+$$= \neg f_0(\neg f_1^*(x_1, \ldots, x_n), \ldots, \neg f_k^*(x_1, \ldots, x_n)) = f_0^*(f_1^*(x_1 \ldots x_n), \ldots, f_k^*(x_1 \ldots x_n))$$\\
+
+\textbf{Следствие} $[S] = S$\\
+
+\noindent \textbf{Доказательство:} $x_i \in S$\\
+
+$f_0,\ldots,f_k \in S \Rightarrow f_0(f_1(x_1,\ldots,x_n),\ldots,f_k(x_1,\ldots,x_n)) = g(x_1,\ldots,x_n) \in S$\\
+
+$g^* = g$ по принципу двойственности.\\
+
+\textbf{Лемма о несамодвойственной функции:}\\
+
+Пусть $f(x_1, \ldots, x_n) \notin S$. Тогда подставляя вместо переменных функции $x, \neg x$, можно получить константу.\\
+
+\noindent \textbf{Доказательство:}\\
+
+Пусть $f(x_1,\ldots,x_n) \neq \neg f(\neg x_1, \ldots, \neg x_n)$. Тогда есть какой-то набор $\alpha_1, \ldots, \alpha_n \in \{0, 1\}^n$ такой, что:
+$f(\alpha_1, \ldots, \alpha_n) = f(\neg \alpha_1, \ldots, \neg \alpha_n)$.
+Подставим вместо единиц в этом наборе $x$ и вместо нулей $\neg x$. Таким образом, получили новую функцию $g$ от одной переменной. Для неё будет справедливо следующее:
+$g(1) = f(\alpha_i) = f(\neg \alpha_i) = g(0)$.\\
+
+\textbf{Класс $M$}\\
+
+Для того, чтобы ввести класс монотонных функций нам нужно ввести понятие порядка. Скажем, что изначально $0 < 1$. Тогда:
+\textbf{набор $(\alpha_1, \ldots, \alpha_n)$ меньше $(\beta_1, \ldots, \beta_n)$}, если $\forall i, \alpha_i \le \beta_i$.\\
+
+Пример: $(1, 0) \le (1, 1)$
+
+$(1, 0) \nleq (0, 1)$ (не сравнимы)
+
+$(0, 1) \nleq (1, 0)$ (не сравнимы)\\
+
+\textbf{$f \in P_2$ - монотонная}, если $\forall \alpha_i, \beta_i : \alpha_i \le \beta_i \Rightarrow f(\alpha) \le f(\beta)$\\
+
+\textbf{Лемма о замкнутости класса монотонных функций.} $[M] = M$\\
+
+\noindent \textbf{Доказательство:} $x_i \in M_i$\\
+
+$f_0, \ldots, f_k \in M$, $g(x_1, \ldots, x_n) = f_0(f_1(x_1, \ldots, x_n), \ldots, f_k(x_1, \ldots, x_n))$.
+Пусть $\alpha = (\alpha_1, \ldots, \alpha_n) \le (\beta_1, \ldots, \beta_n) = \beta$. Тогда $\forall 1 \le i \le k, f_i(\alpha) \le f_i(\beta) \Rightarrow f_0 ( f_i(\alpha) ) \le f_0 ( f_i (\beta) )$.\\
+
+\textbf{Лемма о немонотонной функции:}\\
+
+Пусть $f (x_1, \ldots, x_n) \notin M$. Тогда, подставляя вместо переменных 0, 1, x, можно получить $\neg x$.\\
+
+\noindent \textbf{Доказательство:} $\exists \alpha = (\alpha_1, \ldots, \alpha_n)$, $\exists \beta = (\beta_1, \ldots, \beta_n)$ такие, что $\alpha \le \beta$, но при этом $f(\alpha) = 1, f(\beta) = 0$ (т.к функция $\notin M$). \\
+
+Построим новую функцию $g(x)$, полученная в результате подставления в $x_i$ значения $0, 1$ и $x$. Рассмотрим две группы индексов $i$: 
+
+\hspace{0.5cm}\parbox{12cm} {
+
+1. $\alpha_i = \beta_i$. Тогда поставим в $x_i$ значение $\alpha_i$.
+
+2. $\alpha_i = 0, \beta_i = 1$. Тогда поставим в $x_i$ переменную $x$.
+}
+
+При подстановке в $x$ значения 1 получим значение $g(1) = f(\beta) = 0$. При подстановке в $x$ значения 0 получим значение $g(0) = f(\alpha) = 1$. Получим то, что нам было нужно.
