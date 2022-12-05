@@ -1,49 +1,39 @@
 \subsection{Бинарные отношения, теорема об ассоциативности композиции отношений. Функции. Критерий существования функции, обратной к данной. Композиция биекций является биекцией.}
 
-\textbf{Определение.} Бинарным отношением на множествах $A$ и $B$ называется любое подмножество $R$ декартова произведения $A \times B$. Если $(x, y) \in R$ говорят, что $x$ и $y$ находятся в отношении $R$ (порядок важен). \\
+\begin{itemize}
+	\item \textbf{Ассоциативность композиции бинарных отношений}
+	
+	Пусть $R \subseteq A \times B$, $S \subseteq B \times C$, $T \subseteq C \times D$. Тогда $T \circ (S \circ R) = (T \circ S) \circ R$. Иначе говоря, композиция отношений обладает свойством ассоциативности.
 
-Пусть $R \subseteq A \times B, S \subseteq B \times C$. Тогда $(S \circ R) \subseteq A \times C$: $(a, c) \in S \circ R \Leftrightarrow \exists b \in B:$ $(a, b) \in R, (b, c) \in S$ ($aRb$ и $bSc$). \\
-
-
-\textbf{Ассоциативность композиции бинарных отношений} Пусть $R \subseteq A \times B$, $S \subseteq B \times C$, $T \subseteq C \times D$. Тогда $T \circ (S \circ R) = (T \circ S) \circ R$. Иначе говоря, композиция отношений обладает свойством ассоциативности. \\
-
-\textbf{Доказательство:}
-
-$a \in A, d \in D$
-
-$(a, d) \in T \circ (S \circ R) \Leftrightarrow \exists z \in C: a(S \circ R)z$ и $zTd$ $\Leftrightarrow$ $\exists y \in B, z \in C: aRy$, $ySz$ и $zTd$.
-
-Правая часть расписывается аналогично:
-
-$(a, d) \in (T \circ S) \circ R \Leftrightarrow \exists y \in B: aRy$ и $y(T \circ S)d \Leftrightarrow \exists z \in C, y \in B: aRy$, $ySz$ и $zTd$. \\  \\
-
-\textbf{Функция $f$ из $A$ в $B$} -- это такое отношение $f \subseteq A \times B$, что $\forall a \in A$ в $f$ есть не более одной пары $(a, b)$, где $b \in B$.
-Обозначение: $(a. b) \in f$ или $afb$ $\Leftrightarrow f(a) = b$. \\
-Мы рассматриваем частичные функции, то есть они не полностью определены на $A$. Но \\
-\textbf{f на A и B тотальна}, если $Dom f = A$ (функция определена на всем множестве A). Тогда пишут $f: A \rightarrow B$. \\
-Запись $f: A \rightarrow B$ с подвохом: мы подразумеваем при подобной записи что $f$ тотальна, однако это может быть не так вне нашего курса, будьте бдительны. \\ \\
-
-\textbf{Критерий существования функции, обратной к данной } \\
-
-Функция $g : B \to A$ называется обратной к $f : A \to B$, если $g \circ f = id_A, f \circ g = id_B$. 
-
-\textbf{Теорема.} У функции $f : A \to B$ существует обратная $\Leftrightarrow$ $f$ - биекция.
-
-\textbf{Доказательство.} 
-
-1) $\Leftarrow$ Знаем, что $f$ - биекция, то есть $\forall y\ \exists! x : f(x) = y$. Зададим $g : B \to A$ - всюду определенная функция $g(y) = x$. Проверяем: $f \circ g (y) = f (g(y)) = f(x) = y = id_B$ и $g \circ f(x) = g(f(x)) = g(y) = x = id_A$ \\
-
-2) $\Rightarrow$ Знаем, что существует $g : B \to A$, что $g \circ f = id_A, f \circ g = id_B$. Докажем, что $f$ - биекция. Возьмем $x_1, x_2 \in A$, пусть $f(x_1) = f(x_2)$, тогда $g(f(x_1))  = g(f(x_2)) \Rightarrow x_1 = x_2$ по $id_A$, то есть $f$ - инъекция. \\
-
-Пусть $x = f(y)$, тогда $f(x) = f(g(y)) = y$, значит $f$ - сюръекция. А значит и биекция, доказано.\\ \\
-
-
-\textbf{Композиция биекций тоже биекция}. \\
-
-Пусть заданы $f : A \to B$ и $g : B \to C$ - биекции, докажем, что $g \circ f$ - биекция. \\
-
-1) $g \circ f$ - инъекция, рассмотрим $a_1, a_2 \in A, a_1 \neq a_2$, так как $f$ - инъекция $f(a_1) \neq f(a_2)$, так как $g$ - инъекция, то $g(f(a_1)) \neq g(f(a_2))$, а значит $g \circ f$ - инъекция. \\
-
-2) $g \circ f$ - сюръекция, возьмем $c \in C$, тогда так как $g$ - сюръекция $\exists b \in B : g(b) = c$, так как $f$ - сюръекция, то $\exists a \in A : f(a) = b$. По определению композиции, $(a, c)$ в композиции, если $\exists b : afb, bgc$, что мы и сделали.\\
-
-$g \circ f$ сюръекция + инъекция, значит биекция. 
+	\textbf{Доказательство:}
+	
+	$a \in A, d \in D$
+	
+	$(a, d) \in T \circ (S \circ R) \Leftrightarrow \exists z \in C: a(S \circ R)z$ и $zTd$ $\Leftrightarrow$ $\exists y \in B, z \in C: aRy$, $ySz$ и $zTd$.
+	
+	Правая часть расписывается аналогично:
+	
+	$(a, d) \in (T \circ S) \circ R \Leftrightarrow \exists y \in B: aRy$ и $y(T \circ S)d \Leftrightarrow \exists z \in C, y \in B: aRy$, $ySz$ и $zTd$.
+	
+	\item \textbf{Критерий существования функции, обратной к данной}
+	
+	\textbf{Теорема.} У функции $f : A \to B$ существует обратная $\Leftrightarrow$ $f$ - биекция.
+	
+	\textbf{Доказательство.} 
+	
+	1) $\Leftarrow$ Знаем, что $f$ - биекция, то есть $\forall y\ \exists! x : f(x) = y$. Зададим $g : B \to A$ - всюду определенная функция $g(y) = x$. Проверяем: $f \circ g (y) = f (g(y)) = f(x) = y = id_B$ и $g \circ f(x) = g(f(x)) = g(y) = x = id_A$ \\
+	
+	2) $\Rightarrow$ Знаем, что существует $g : B \to A$, что $g \circ f = id_A, f \circ g = id_B$. Докажем, что $f$ - биекция. Возьмем $x_1, x_2 \in A$, пусть $f(x_1) = f(x_2)$, тогда $g(f(x_1))  = g(f(x_2)) \Rightarrow x_1 = x_2$ по $id_A$, то есть $f$ - инъекция. \\
+	
+	Пусть $x = f(y)$, тогда $f(x) = f(g(y)) = y$, значит $f$ - сюръекция. А значит и биекция, доказано.
+	
+	\item \textbf{Композиция биекций является биекцией}
+	
+	Пусть заданы $f : A \to B$ и $g : B \to C$ - биекции, докажем, что $g \circ f$ - биекция.
+	
+	1) $g \circ f$ - инъекция, рассмотрим $a_1, a_2 \in A, a_1 \neq a_2$, так как $f$ - инъекция $f(a_1) \neq f(a_2)$, так как $g$ - инъекция, то $g(f(a_1)) \neq g(f(a_2))$, а значит $g \circ f$ - инъекция.
+	
+	2) $g \circ f$ - сюръекция, возьмем $c \in C$, тогда так как $g$ - сюръекция $\exists b \in B : g(b) = c$, так как $f$ - сюръекция, то $\exists a \in A : f(a) = b$. По определению композиции, $(a, c)$ в композиции, если $\exists b : afb, bgc$, что мы и сделали.
+	
+	$g \circ f$ сюръекция + инъекция, значит биекция. 
+\end{itemize}
