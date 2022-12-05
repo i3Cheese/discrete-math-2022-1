@@ -1,0 +1,8 @@
+\subsection{Полиномиальные коэффициенты. Их алгебраический и комбинаторный смысл.}
+
+$$\begin{pmatrix}&n\\\alpha_1,&...,&\alpha_k\end{pmatrix} = \frac{n!}{\alpha_1!\alpha_2!...\alpha_k!}$$
+
+Очевидно, что $(x_1 + x_2 + ... + x_k)^n = \underbrace{(x_1 + ... + x_k)(x_1 + ... + x_k)...(x_1 + .. x_k)}_{n}$. Пусть из $\alpha_i$ скобок мы выбрали $x_i$. Получим слагаемое $x_1^{\alpha_1}x_2^{\alpha_2}...x_k^{\alpha_k}$, причем $\alpha_1 + \alpha_2 + ... + \alpha_k = n$. Тогда количество способов его выбрать равно произведению количеств способов выбрать каждый $x_i$. Получим:
+$$\begin{pmatrix}&n\\\alpha_1,&...,&\alpha_k\end{pmatrix} = C^{\alpha_1}_{n} \cdot C^{\alpha_2}_{n - \alpha_1} \cdot C^{\alpha_3}_{n - \alpha_1 - \alpha_2} \cdot ... \cdot C^{\alpha_k}_{n - \alpha_1 - \alpha_2 - ... - \alpha_k} = $$
+$$ =\frac{n!}{\alpha_1!(n-\alpha_1)!} \cdot \frac{(n - \alpha_1)!}{\alpha_2!(n-\alpha_1-\alpha_2)!} \cdot \frac{(n-\alpha_1-\alpha_2)!}{\alpha_3!(n-\alpha_1-\alpha_2-\alpha_3)!} \cdot ... \cdot \frac{(n-\alpha_1-...-\alpha_{k-1})!}{\alpha_k!(n-\alpha_1-...-\alpha_k)!} = $$
+$$= \frac{n!}{\alpha_1!} \cdot \frac{1}{\alpha_2!} \cdot ... \cdot \frac{1}{\alpha_k!} = \frac{n!}{\alpha_1!\alpha_2!...\alpha_k!}$$

@@ -1,0 +1,47 @@
+\subsection{Множества, теоретико-множественные операции. Парадокс Рассела.}
+\begin{itemize}
+	\item \textbf{Определение и некоторые обозначения}
+	
+Множеством называют совокупность произвольных объектов
+
+$X = \{a, b, c\}$
+
+$a \in X$ -- объект $a$ лежит в множестве, $d \notin X$ -- объект $d$ не лежит в множестве
+
+Способы задания множества:
+\begin{enumerate}
+	\item Явно (списком элементов): $X = \{1, 2, 3\}$
+	\item Условием: $Y = \{ y \in \N \mid y$ -- четно $\}$
+\end{enumerate}
+
+$\varnothing$ -- пустое множество
+
+$2^{A}$ -- множество всех подмножеств $A$ (в том числе пустое и само $A$)
+
+\item \textbf{Операции над множествами}
+
+Пусть $A, B$ -- множества. Тогда:
+
+Объединение множеств: $A \cup B = \{x \mid x \in A \vee x \in B$ $\}$
+
+Пересечение множеств: $A \cap B = \{x \mid x \in A \wedge x \in B$ $\}$
+
+Разность множеств: $A \setminus B = \{x \in A \mid x \notin B \}$
+
+Дополнение множества $A$ до $B$: $\bar{A} = B \setminus A$
+
+Симметрическая разность: $A \triangle B = \{x \mid (x \in A \wedge x \notin B) \vee (x \notin A \wedge x \in B) \}$
+
+$A \subseteq X \Leftrightarrow \forall x (x \in A \Rightarrow x \in X)$. $A$ -- подмножество, $X$ -- надмножество.
+
+$A = B \Leftrightarrow A \subseteq B \wedge B \subseteq A$.
+
+\item \textbf{Парадокс Рассела}
+
+$U = \{x \mid x \notin x\}$.
+
+Вопрос: $U \in U$?
+
+Если да, то по определению $U$, $U \notin U$. Если нет, то т.к $U \notin U$, $U$ является элементом себя же. Противоречие. 
+
+\end{itemize}
