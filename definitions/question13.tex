@@ -1,0 +1,75 @@
+\subsection{Правила алгебры логики, доказательство теоретико-множественных тождеств с помощью алгебры логики.}
+
+\begin{itemize}
+	\item \textbf{Правила алгебры логики}
+	\begin{enumerate}
+		\item Коммутативность
+		
+		$x \vee y = y \vee x$
+		
+		$x \wedge y = y \wedge x$
+		
+		$x \oplus y = y \oplus x$
+
+		\item Ассоциативность
+		
+		$x \vee (y \vee z)  = (x \vee y) \vee z$
+		
+		$x \wedge (y \wedge z)  = (x \wedge y) \wedge z$
+		
+		$x \oplus (y \oplus z)  = (x \oplus y) \oplus z$
+		
+		\item Дистрибутивность
+		
+		$(x \vee y) \wedge z = (x \wedge z) \vee (y \wedge z)$
+		
+		$(x \wedge y) \vee z = (x \vee z) \wedge (y \vee z)$
+		
+		$(x \oplus y) \wedge z = (x \wedge z) \oplus (y \wedge z)$
+		
+		\item Закон де Моргана
+		
+		$\neg(x \wedge y) = \neg x \vee \neg y$
+		
+		$\neg(x \vee y) = \neg x \wedge \neg y$
+		
+		\item Следствие
+		
+		$(x \to y) = (\neg y \to \neg x)$
+	\end{enumerate}
+	
+	\item \textbf{Доказательство теоретико-множественных тождества с помощью алгебры логики}
+	
+	Доказать утверждение: $(A_1 \cap A_2 \cap ... \cap A_n) \setminus (B_1 \cap B_2 \cap ... \cap B_n) = (A_1 \setminus B_1) \cap (A_2 \setminus B_2) \cap ... \cap (A_n \setminus B_n)$
+	
+	Доказательство:
+	
+	Рассмотрим произвольный элемент $x$.
+	
+	$a_i = x \in A_i \; (false/true)$
+	
+	$b_i = x \in B_i \; (false/true)$
+	
+	Выпишем в этих терминах левую часть:
+	$$(a_1 \wedge a_2 \wedge ... \wedge a_n) \wedge \neg (b_1 \vee b_2 \vee ... \vee b_n)$$
+	
+	Правую часть:
+	$$(a_1 \wedge \neg b_1) \wedge (a_2 \wedge \neg b_2) \wedge ... \wedge (a_n \wedge \neg b_n)$$
+
+	Используя закон де Моргана преобразуем левую часть:
+	$$(a_1 \wedge a_2 \wedge ... \wedge a_n) \wedge \neg (b_1 \vee b_2 \vee ... \vee b_n) = (a_1 \wedge a_2 \wedge ... \wedge a_n) \wedge (\neg b_1 \wedge \neg b_2 \wedge ... \wedge \neg b_n) = (a_1 \wedge \neg b_1) \wedge (a_2 \wedge \neg b_2) \wedge ... \wedge (a_n \wedge \neg b_n)$$
+	
+	Получили идентичную правой части формулу, следовательно тождество верно, ч.т.д.
+	
+	Несколько полезных соображений:
+	
+	$x \in A \cup B \Leftrightarrow a \vee b$
+	
+	$x \in A \cap B \Leftrightarrow a \wedge b$
+	
+	$x \in A \setminus B \Leftrightarrow a \wedge \neg b$
+	
+	$x \in A \triangle B \Leftrightarrow a \oplus b$
+	
+\end{itemize}
+
