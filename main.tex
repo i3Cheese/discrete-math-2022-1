@@ -29,12 +29,22 @@
 		}
 	}
 	\newpage
-	\section{Задачи из листков}{
+	\section{Домашние задания}{
 		%\foreach \i in {0,...,11} {
 		%	\edef\FileName{proofs/question\i}%
 		%	\IfFileExists{\FileName}{%
 		%		\input{\FileName}%
 		%	}
 		%}
+	}
+	\newpage
+	\section{Семинары}{
+		\foreach \i in {0,...,11} {
+			\edef\FileName{seminars/sem\i}%
+			\IfFileExists{\FileName}{%
+				\input{\FileName}%
+				\newpage%
+			}
+		}
 	}
 \end{document}
