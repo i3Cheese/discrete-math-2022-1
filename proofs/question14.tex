@@ -1,1 +1,25 @@
 \subsection{Формула включений-исключений}
+
+Для начала введем определение характеристической функции. Пусть есть множество $X$ и вы нем выбрали подмножество $A \subseteq X$. Тогда следующуюу функцию называют характеристической:
+$$\chi_A{(x)} = \begin{cases}1, x \in A\\0, x \notin A\end{cases}$$
+
+Отметим следующие её свойства:
+
+$\chi_{\overline{A}}{(x)} = 1 - \chi_A{(x)}$
+
+$\chi_{A \cap B}{(x)} = \chi_A{(x)}\chi_B{(x)}$
+
+$\chi_{A \cup B}{(x)} = \chi_A{(x)} + \chi_B{(x)} - \chi_A{(x)}\chi_B{(x)} = 1 - (1 - \chi_A{(x)})(1 - \chi_B{(x)})$
+
+Используя равенство $A_1 \cup A_2 \cup ... \cup A_n = \overline{\overline{A_1} \cap \overline{A_2} \cap ... \cap \overline{A_n}}$ получим (далее в записи будет опускаться $x$, то есть $\chi_A{(x)} \Leftrightarrow \chi_A{(x)}$):
+
+$$\chi_{A_1 \cup A_2 \cup ... \cup A_n} = \chi_{\overline{\overline{A_1} \cap \overline{A_2} \cap ... \cap \overline{A_n}}} = 1 - \chi_{\overline{A_1} \cap \overline{A_2} \cap ... \cap \overline{A_n}} =$$
+$$= 1 - \chi_{\overline{A_1}}\chi_{\overline{A_2}}...\chi_{\overline{A_n}} = 1 - (1 - \chi_{A_1})(1 - \chi_{A_2})...(1 - \chi_{A_n}) = \sum_{k=1}^{n}\sum_{1\leqslant i_1\leqslant i_2 \leqslant ... \leqslant i_k}(-1)^{k+1}\chi_{A_{i_1}}\chi_{A_{i_2}}...\chi_{A_{i_k}}$$
+
+Понятно, что $\displaystyle |A| = \sum_{x \in A}\chi_A({x})$. Получим:
+$$|A_1 \cup A_2 \cup ... \cup A_n| = \sum_{x \in A_1 \cup A_2 \cup ... \cup A_n}\chi_{A_1 \cup A_2 \cup ... \cup A_n}{(x)} = $$
+$$=\sum_{x \in A_1 \cup A_2 \cup ... \cup A_n}\sum_{k=1}^{n}\sum_{1\leqslant i_1\leqslant i_2 \leqslant ... \leqslant i_k}(-1)^{k+1}\chi_{A_{i_1}}{(x)}\chi_{A_{i_2}}{(x)}...\chi_{A_{i_k}}{(x)} = \sum_{k=1}^{n}\sum_{1 \leqslant i_1 \leqslant i_2 \leqslant ... \leqslant i_k \leqslant n}(-1)^{k+1}|A_{i_1} \cap A_{i_2} \cap ... \cap A_{i_k}| $$
+
+
+
+
