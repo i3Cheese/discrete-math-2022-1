@@ -1,0 +1,57 @@
+\subsection{Семинар 5}
+\begin{center}
+\textbf{Задача 1}
+\end{center}
+а) Верно, так как если $\displaystyle f\in P\cap Q\Longrightarrow f\in P\land f\in Q\Longrightarrow [ f] \in P,\ [ f] \in Q\Longrightarrow [ f] \in P\cap Q$ (я очень в этом не уверен)
+
+б) Не верно. Пример: $\displaystyle S\cup M$. В нём содержатся $\displaystyle \land $и $\displaystyle \neg $, значит замыкание равно множеству всех функций, что не равно $\displaystyle S\cup M$.
+
+\begin{center}
+\textbf{Задача 2}
+\end{center}
+а) $\displaystyle 2^{2^{n} -1}$ (для всех масок кроме нулевой любые значения)
+
+б) Так как линейная функция представляется в виде полиномо Жегалкина где есть только свободный моном и мономы с одной переменной, то есть всего $\displaystyle 2^{n-1}$ вариант коэффициентов, а значит есть ровно столько линейных функций.
+
+в) $\displaystyle 2^{2^{n} /2} =2^{2^{n-1}}$, так как каждое значение задаёт значение и для обратной маски
+
+\begin{center}
+\textbf{Задача 3}
+\end{center}
+Нет, так как $\displaystyle \land \in M,\lor \in M,\ XOR_{3}\not{\in } M$.
+
+\begin{center}
+\textbf{Задача 4}
+\end{center}
+Выберем все маски, в которых $\displaystyle \lfloor \frac{n}{2} \rfloor $ переменных. Сделаем значения во всех масках с меньшим количеством нулей 0, а с большим - 1. Тогда мы можем сделать любые значения в масках с ровно таким количеством нулей и функция будет монотонной. Значит, таких функций хотя бы $\displaystyle 2^{\lfloor \frac{n}{2} \rfloor }$.
+
+\begin{center}
+\textbf{Задача 5}
+\end{center}
+а) Является, так как $\displaystyle \rightarrow $ принадлежит только $\displaystyle T_{1}$, а $\displaystyle diff$ этому классу не принадлежит
+
+б) Является, так как \ $\displaystyle 0\not{\in } T_{1} ,\ 1\not{\in } T_{0} ,\ \land \not{\in } S,L,\ evn\ \not{\in } M$
+
+в) Является, так как для каждого класса есть функция, которая ему не принадлежит (с 1 взгляда это так, но легче это проверить на месте)
+
+\begin{center}
+\textbf{Задача 6}
+\end{center}
+todo
+\begin{center}
+\textbf{Задача 7}
+\end{center}
+todo
+\begin{center}
+\textbf{Задача 8}
+\end{center}
+Я не понимаю пункт В, так что скорее всего моя логика неправильна и описаться на неё нельзя. Но вот что пока написано:
+
+а) Обе функции сохряняют 0, кроме этого $\displaystyle \oplus $только линейна, а $\displaystyle \land $ не линейна, поэтому их замыкание равно $\displaystyle T_{0}$.
+
+б) $\displaystyle \equiv $сохраняет $\displaystyle 1$ и линейна, $\displaystyle \land $ сохраняет $\displaystyle 1$ и не линейна, значит замыкание - $\displaystyle T_{1}$.
+
+в) $\displaystyle \{0,1,\land ,\lor \}$. Все монотонны, $\displaystyle \land $
+
+
+
