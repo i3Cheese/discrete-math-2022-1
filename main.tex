@@ -2,7 +2,8 @@
 \usepackage{header}
 
 \title{Коллоквиум по дискретной математике №1}
-\author{ %TODO
+\author{ Цыганов Аскар, Евгений Катасонов, Александр Деревягин, \\
+Амир Галеев, Артем Сафин, Даня Смирнов, Алексей Дацковский, Иван Мачуговский
 }
 \date{10 декабря 2022}
 
@@ -12,7 +13,7 @@
 	\tableofcontents
 	\newpage
 	\section{Определения и обозначения} {
-		\foreach \i in {0,...,41} {
+		\foreach \i in {1,...,41} {
 			\edef\FileName{definitions/question\i}%
 			\IfFileExists{\FileName}{%
 				\input{\FileName}%
@@ -21,7 +22,7 @@
 	}
 	\newpage
 	\section{Доказательства} {
-		\foreach \i in {0,...,32} {
+		\foreach \i in {1,...,32} {
 			\edef\FileName{proofs/question\i}%
 			\IfFileExists{\FileName}{%
 				\input{\FileName}%
@@ -29,17 +30,8 @@
 		}
 	}
 	\newpage
-	\section{Домашние задания}{
-		%\foreach \i in {0,...,11} {
-		%	\edef\FileName{proofs/question\i}%
-		%	\IfFileExists{\FileName}{%
-		%		\input{\FileName}%
-		%	}
-		%}
-	}
-	\newpage
 	\section{Семинары}{
-		\foreach \i in {0,...,11} {
+		\foreach \i in {1,...,11} {
 			\edef\FileName{seminars/sem\i}%
 			\IfFileExists{\FileName}{%
 				\input{\FileName}%
@@ -47,4 +39,14 @@
 			}
 		}
 	}
+	\newpage
+	\section{Домашние задания}{
+		%\foreach \i in {1,...,11} {
+		%	\edef\FileName{proofs/question\i}%
+		%	\IfFileExists{\FileName}{%
+		%		\input{\FileName}%
+		%	}
+		%}
+	}
+	
 \end{document}
