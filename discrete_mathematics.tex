@@ -14,7 +14,7 @@
 	\newpage
 	\section{Определения и обозначения} {
 		\foreach \i in {1,...,41} {
-			\edef\FileName{definitions/question\i}%
+			\edef\FileName{definitions/def\i}%
 			\IfFileExists{\FileName}{%
 				\input{\FileName}%
 			}
@@ -23,7 +23,7 @@
 	\newpage
 	\section{Доказательства} {
 		\foreach \i in {1,...,32} {
-			\edef\FileName{proofs/question\i}%
+			\edef\FileName{proofs/proof\i}%
 			\IfFileExists{\FileName}{%
 				\input{\FileName}%
 			}
