@@ -1,0 +1,39 @@
+\subsection{Семинар 9}
+\begin{center}
+\textbf{Задача 1}
+\end{center}
+Пусть $\displaystyle f( x) < x$. Тогда $\displaystyle f( f( x)) < f( x)$, так как аргумент слева меньше аргумента справа. Построим последовательность $\displaystyle x,\ f( x) ,\ f( f( x)) ,\ ...$. Она убывает и бесконечна, что противоречит тому что множество фундировано. Значит наше предположение не верно и $\displaystyle \forall x:\ f( x) \geqslant x$.
+
+\begin{center}
+\textbf{Задача 2}
+\end{center}
+(Копия 8.11)
+
+а) Построим конструктивно биекцию. Пусть мы уже сделали отношения между $\displaystyle a\subseteq A,\ b\subseteq B$. Тогда выберем любое $\displaystyle x\in A\backslash a$. Оно может быть либо больше всех элементов $\displaystyle a$, либо меньше всех, либо между какими-то $\displaystyle a_{i}$ и $\displaystyle a_{i+1}$. Тогда найдём элемент в $\displaystyle B$, который в таком же отношении с элементами $\displaystyle b$ (такой элемент обязательно есть, так как нет граничных элементов и множество плотно). Сделаем между ними ребро биекции. Мы сделали переход $\displaystyle n\rightarrow n+1$.
+
+Также чтобы каждый элемент гарантированно сопоставить пронумеруем $\displaystyle A,B$ и на чётные шаги будем сопоставлять минимальный неиспользованный элемент $\displaystyle A$, а на чётных - из $\displaystyle B$.
+
+б) todo
+
+\begin{center}
+\textbf{Задача 3}
+\end{center}
+Множество максимальных элементов образует антицепь (так как иначе один из них был бы меньше другого). Пусть $\displaystyle M_{1}$ - множество максимальных элементов множества $\displaystyle P$. Далее $\displaystyle M_{2}$ - множество максимумов $\displaystyle P\backslash M_{1}$. $\displaystyle M_{3}$ - максимумы $\displaystyle P\backslash M_{1} \backslash M_{2}$ и так далее пока множество не станет пустым. Если одно из множеств размера хотя бы $\displaystyle m+1$, то мы нашли нужную антицепь. Если множеств хотя бы $\displaystyle n+1$, то мы можем построить цепь $\displaystyle a_{1} ,a_{2} ,...a_{n+1}$, где $\displaystyle a_{i} \in M_{i}$ (так как у каждого элемента есть элемент в предыдущем $\displaystyle M$, который больше него).
+
+Если же всего множеств $\displaystyle \leqslant n$ и размер каждого $\displaystyle \leqslant m$, то всего элементов $\displaystyle \leqslant mn$ - противоречие.
+
+\begin{center}
+\textbf{Задача 4}
+\end{center}
+Скажем что $\displaystyle a< b$ если $\displaystyle b\vdots a$. Тогда в множестве нет антицепей размера больше $\displaystyle 2$, значит по теореме Дилуорса множество можно разбить на 2 цепи, что и требовалось в задаче.
+
+\begin{center}
+\textbf{Задача 5}
+\end{center}
+а) Пусть 2 элемента сравнимы, если $\displaystyle a_{i} < a_{j} \land i< j$. Тогда в множестве есть либо возрастающая последовательность размера $\displaystyle 7+1$, либо убывающая размера $\displaystyle 5+1$. Используем $\displaystyle 3$ задачу. 
+
+б) Не из всякой, пример: $\displaystyle [ 29..35,\ 22..28,\ 15..21,\ 8..14,\ 1..7]$. Нет возрастающих размера $\displaystyle 8$ и убывающих размера $\displaystyle 6$.
+
+\begin{center}
+\textbf{Задача 6}
+\end{center}
