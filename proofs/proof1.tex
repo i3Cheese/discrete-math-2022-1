@@ -28,7 +28,7 @@
 			\item Утверждение: $A(n)$ - верно ли, что $\displaystyle\sum_{k=1}^{n} \frac{1}{k^2} \leqslant 2 - \frac{1}{n}$
 			\item База: $A(1)\colon \displaystyle\sum_{k=1}^{1}\frac{1}{k^2} = \frac{1}{1} = 1 \leqslant 2 - 1 \Rightarrow$ база верна
 			\item Шаг: пусть $A(n)$ - верно, докажем верность $A(n + 1)$:
-			$$\displaystyle\sum_{k=1}^{n+1} \frac{1}{k^2}  \leqslant 2 - \frac{1}{n} + \frac{1}{n+1} = 2 - \frac{n^2 + n + 1}{n(n + 1)^2} \leqslant 2 - \frac{n(n + 1)}{n(n+1)^2} = 2 - \frac{1}{n+1}$$
+			$$\displaystyle\sum_{k=1}^{n+1} \frac{1}{k^2}  \leqslant 2 - \frac{1}{n} + \frac{1}{(n+1)^2} = 2 - \frac{n^2 + n + 1}{n(n + 1)^2} \leqslant 2 - \frac{n(n + 1)}{n(n+1)^2} = 2 - \frac{1}{n+1}$$
 			Таким образом $A(n + 1)$ верно $\Rightarrow$ индукция верна $\Rightarrow$ исходное утверждение верно. Так как $\frac{1}{n} > 0$ получаем:
 			$$\displaystyle\sum_{k=1}^{n} \frac{1}{k^2} \leqslant 2 - \frac{1}{n} < 2$$
 		\end{itemize} 
